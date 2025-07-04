@@ -36,8 +36,9 @@ It supports basic CRUD operations on users like create, fetch, update, and delet
 Unit tests are written using JUnit and Mockito.
 
 Sample test: UserControllerTest.java using MockMvc.
-```
+
 📁 Project Structure
+```
 user-management-JPA/
 ├── src/                                 # Source folder
 │   ├── main/                            # Main application code
