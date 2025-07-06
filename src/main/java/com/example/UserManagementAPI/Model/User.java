@@ -15,15 +15,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="users")
-//@Getter  //THis annotation is used to make Getter function automatically
-//@Setter  //This annotation is used to make Setter function automatically
 @Data
-//This annotation is used to make Getter + Setter + NoArgsConstructor + AllArgsConstructor all together at compilation
-@NoArgsConstructor       //This annotation is used for default constructor
-@RequiredArgsConstructor  //This annotation is used for nonNull field Constructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class User {
 
-    @Id  //specifies the PRIMARY KEY of the entity
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
