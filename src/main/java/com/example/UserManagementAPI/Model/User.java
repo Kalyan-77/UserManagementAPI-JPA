@@ -1,6 +1,7 @@
 package com.example.UserManagementAPI.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -12,11 +13,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
 @Data
-@NoArgsConstructor
+@NoArgsConstructor//default constructor
 @RequiredArgsConstructor
 public class User {
 
@@ -32,7 +35,17 @@ public class User {
     @NonNull
     @NotBlank(message = "Email is required")
     @Email(message = "Email should be valid")
+    @Column(unique = true)
     private String email;
+
+    //@Valid
+    @NotBlank(message = "Password is required")
+    private String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<String> roles = new HashSet<>();
 
     @Column(name="created_at",updatable = false)
     @CreationTimestamp
